@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport " content="width=device-width, initial-scale=1 ">
+    <title>use of callback</title>
+</head>
+
+<body>
+    <h1>Callback Function Example</h1>
+
+    <button id="btn">Click Me</button>
+
+    <p id="result"></p>
+
+    <script>
+        // Define a function that takes a callback function as an argument
+        function doSomethingAsync(callback) {
+            setTimeout(function() {
+                const result = "Async operation completed!";
+                callback(result); // Call the callback function with the result
+            }, 2000); // Simulating an asynchronous operation (2 seconds delay)
+        }
+
+        // Define the callback function
+        function handleCallback(result) {
+            document.getElementById("result").textContent = result;
+        }
+
+        // Attach an event listener to the button
+        document.getElementById("btn").addEventListener("click", function() {
+            document.getElementById("result").textContent = "Waiting for async operation...";
+
+            // Call the async function and pass the callback function
+            doSomethingAsync(handleCallback);
+        });
+    </script>
+</body>
+
+</html>

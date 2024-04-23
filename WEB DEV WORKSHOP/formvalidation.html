@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport " content="width=device-width, initial-scale=1 ">
+    <title>JS Form Validation</title>
+    </title>
+</head>
+
+<body>
+    <h1>Form Validation Example</h1>
+
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var age = document.getElementById("age").value;
+
+            if (name === "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Email must be filled out");
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Invalid email address");
+                return false;
+            }
+
+            if (age === "" || isNaN(age) || age < 18) {
+                alert("Age must be a number and at least 18");
+                return false;
+            }
+
+            // If all validations pass, the form is submitted
+            return true;
+        }
+
+        function validateEmail(email) {
+            // Simple email validation using a regular expression
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
+</body>
+
+</html>
